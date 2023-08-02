@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak-app
+  labels:
+    app: keycloak-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak-app
+  template:
+    metadata:
+      labels:
+        app: keycloak-app
+    spec:
+      containers:
+      - name: keycloak-app
+        image: quay.io/keycloak/keycloak:20.0.2
+        args: ["start-dev"]
+        ports:
+        - containerPort: 8080
+        env:
+        - name: KC_DB
+          value: postgres
+        - name: KC_DB_URL
+          value: "jdbc:postgresql://keycloak-db.crypto-trading.svc.cluster.local/keycloak"
+        - name: KC_DB_USERNAME
+          value: admin
+        - name: KC_DB_PASSWORD
+          value: keycloak
+        - name: KEYCLOAK_ADMIN
+          value: admin
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: admin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak-service
+  labels:
+    app: keycloak-app
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: keycloak-app
