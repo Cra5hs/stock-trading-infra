@@ -5,3 +5,7 @@
     - Nginx
     - PostgreSQL HA + Keycloak
     - Kafka
+
+
+# How to use
+    - Run script from 0 -> end
