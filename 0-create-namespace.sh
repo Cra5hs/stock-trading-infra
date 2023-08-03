@@ -1,1 +1,1 @@
-kubectl create ns crypto-trading
+kubectl create ns stock-trading
