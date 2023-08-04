@@ -2,10 +2,14 @@
 0. Required
     - Domain (You can buy from namecheap)
 1. Infrastructure
-    - Nginx
-    - PostgreSQL HA + Keycloak
-    - Kafka
-
+    - Nginx ⚡
+    - PostgreSQL HA + Keycloak ⚡
+    - Kafka 🌱
+    - InfluxDB 🌱
+    - Redis 🌱
+    - MongoDB 🌱
+    - NestJS 🌱
+    - Go 🌱
 
 # How to use
     - Run script from 1 to end
