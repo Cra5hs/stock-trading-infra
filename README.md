@@ -9,3 +9,4 @@
 
 # How to use
     - Run script from 1 to end
+    - Point A Record from Domain to LoadBalancerIP generate from Kubernetes (NGINX Ingress)
