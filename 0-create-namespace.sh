@@ -1,1 +1,0 @@
-kubectl create ns stock-trading

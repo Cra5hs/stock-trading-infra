@@ -1,0 +1,1 @@
+helm install ingress-nginx -n ingress-nginx --create-namespace ingress-nginx/ingress-nginx

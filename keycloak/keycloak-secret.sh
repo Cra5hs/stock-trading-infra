@@ -1,2 +1,2 @@
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout auth-tls.key -out auth-tls.crt -subj "/CN=auth.sisox.site/O=stock-trading"
-kubectl create secret -n stock-trading tls auth-tls-secret --key auth-tls.key --cert auth-tls.crt
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout auth-tls.key -out auth-tls.crt -subj "/CN=auth.sisox.site/O=sisox"
+kubectl create secret -n keycloak tls auth-tls-secret --key auth-tls.key --cert auth-tls.crt

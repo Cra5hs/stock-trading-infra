@@ -1,6 +1,6 @@
 # Stock trading infra with kubernetes
 0. Required
-    - Domain
+    - Domain (You can buy from namecheap)
 1. Infrastructure
     - Nginx
     - PostgreSQL HA + Keycloak
@@ -8,4 +8,4 @@
 
 
 # How to use
-    - Run script from 0 -> end
+    - Run script from 1 to end
