@@ -1,0 +1,2 @@
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout app2-tls.key -out app2-tls.crt -subj "/CN=app2.sisox.site/O=sisox"
+kubectl create secret -n sisox tls app2-tls-secret --key app2-tls.key --cert app2-tls.crt

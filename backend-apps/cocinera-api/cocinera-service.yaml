@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cocinera
+  namespace: sisox
+  labels:
+    app: cocinera
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: cocinera
+  ports:
+    - protocol: TCP
+      port: 80

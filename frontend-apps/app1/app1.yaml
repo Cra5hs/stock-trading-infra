@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  namespace: sisox
+  labels:
+    app: app1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+        - name: app1
+          image: registry.digitalocean.com/stock-trading/hotel:2.0
+          volumeMounts:
+          - name: certs
+            mountPath: "/etc/certs"
+            readOnly: true
+          ports:
+            - name: https
+              containerPort: 80
+      volumes:
+      - name: certs
+        secret:
+          secretName: app1-tls-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1
+  namespace: sisox
+  labels:
+    app: app1
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+  selector:
+    app: app1
+  type: ClusterIP
+  clusterIP: None
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app1
+  namespace: sisox
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "http"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "128k"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+      - sisox.site
+      secretName: app1-tls-secret
+  rules:
+  - host: app1.sisox.site
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: app1
+            port:
+              number: 80

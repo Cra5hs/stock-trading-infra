@@ -10,7 +10,7 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-      - fake
+      - sisox.site
       secretName: auth-tls-secret
   rules:
   - host: "auth.sisox.site"

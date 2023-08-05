@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: doncella
+  namespace: sisox
+  labels:
+    app: doncella
+spec:
+  type: ClusterIP
+  clusterIP: None
+  selector:
+    app: doncella
+  ports:
+    - protocol: TCP
+      port: 80
