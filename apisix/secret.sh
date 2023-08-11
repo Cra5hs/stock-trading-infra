@@ -1,0 +1,1 @@
+kubectl create secret -n ingress-apisix tls sisox-tls-secret --key ./sisox_site/sisox.site.key --cert ./sisox_site/sisox.site.crt

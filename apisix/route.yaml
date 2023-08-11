@@ -1,0 +1,29 @@
+
+# Define ApisixTls Objects
+apiVersion: apisix.apache.org/v2
+kind: ApisixTls
+metadata:
+  name: api-tls
+  namespace: ingress-apisix
+spec:
+  hosts:
+  - www.sisox.site
+  secret:
+    name: sisox-tls-secret
+    namespace: ingress-apisix
+---
+# Define the route to access the backend
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: api-route
+  namespace: ingress-apisix
+spec:
+  http:
+  - name: www.sisox.site
+    match:
+      paths:
+      - /*
+    backends:
+    - serviceName: httpbin
+      servicePort: 80

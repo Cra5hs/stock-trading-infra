@@ -1,0 +1,14 @@
+# httpbin-cert.yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: sisox-cert
+  namespace: ingress-apisix
+spec:
+  secretName: sisox-tls-secret
+  commonName: www.sisox.site
+  isCA: true
+  issuerRef:
+    name: sisox-issuer
+    kind: Issuer
+    group: cert-manager.io
