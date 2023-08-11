@@ -1,1 +1,0 @@
-helm install cert-manager jetstack/cert-manager --namespace ingress-apisix  --set prometheus.enabled=false --set installCRDs=true
