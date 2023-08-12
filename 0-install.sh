@@ -1,7 +1,12 @@
 #!/bin/sh
-cd $PWD/apisix
+
+kubectl create ns stock-trad
+export ROOT=$PWD
+cd $ROOT/apisix
 sh main.sh
 
-cd $PWD/apiservice
+cd $ROOT/apiservice
 sh main.sh
 
+cd $ROOT/keycloak
+sh main.sh

@@ -1,0 +1,1 @@
+helm install -n stock-trad keycloak oci://registry-1.docker.io/bitnamicharts/keycloak
