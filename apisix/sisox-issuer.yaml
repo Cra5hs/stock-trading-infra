@@ -3,6 +3,6 @@ apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
   name: sisox-issuer
-  namespace: ingress-apisix
+  namespace: stock-trad
 spec:
   selfSigned: {}

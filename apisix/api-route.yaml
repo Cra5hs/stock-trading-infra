@@ -1,46 +1,40 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: ext-api-service
-  namespace: ingress-apisix
-spec:
-  type: ExternalName
-  externalName: httpbin.api-service.svc.cluster.local
----
-apiVersion: apisix.apache.org/v2
-kind: ApisixUpstream
-metadata:
-  name: ext-api-upstream
-  namespace: ingress-apisix
-spec:
-  externalNodes:
-  - type: Service
-    name: ext-api-service
----
 # Define ApisixTls Objects
 apiVersion: apisix.apache.org/v2
 kind: ApisixTls
 metadata:
   name: api-tls
-  namespace: ingress-apisix
+  namespace: stock-trad
 spec:
   hosts:
   - api.sisox.site
+  - auth.sisox.site
   secret:
     name: sisox-tls-secret
-    namespace: ingress-apisix
----
+    namespace: stock-trad
+---    
 # Define the route to access the backend
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
 metadata:
   name: api-route
-  namespace: ingress-apisix
+  namespace: stock-trad
 spec:
   http:
   - name: api.sisox.site
     match:
+      hosts:
+      - api.sisox.site
       paths:
       - /*
-    upstreams:
-    - name: ext-api-upstream
+    backends:
+    - serviceName: httpbin
+      servicePort: 80
+  - name: auth.sisox.site
+    match:
+      hosts:
+      - auth.sisox.site
+      paths:
+      - /*
+    backends:
+    - serviceName: keycloak-headless
+      servicePort: 80
