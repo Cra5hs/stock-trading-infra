@@ -1,4 +1,22 @@
-
+apiVersion: v1
+kind: Service
+metadata:
+  name: ext-api-service
+  namespace: ingress-apisix
+spec:
+  type: ExternalName
+  externalName: httpbin.api-service.svc.cluster.local
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixUpstream
+metadata:
+  name: ext-api-upstream
+  namespace: ingress-apisix
+spec:
+  externalNodes:
+  - type: Service
+    name: ext-api-service
+---
 # Define ApisixTls Objects
 apiVersion: apisix.apache.org/v2
 kind: ApisixTls
@@ -24,6 +42,5 @@ spec:
     match:
       paths:
       - /*
-    backends:
-    - serviceName: httpbin
-      servicePort: 80
+    upstreams:
+    - name: ext-api-upstream
