@@ -5,5 +5,4 @@ metadata:
   name: sisox-issuer
   namespace: ingress-apisix
 spec:
-  ca:
-    secretName: sisox-tls-secret
+  selfSigned: {}
