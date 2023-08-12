@@ -1,3 +1,12 @@
 # stock-trading-infra
 
-Implement HTTPS with APISIX and Discovery Kubernetes service (*.svc.cluster.local)
+- Kubernetes
+- Apisix
+- Keycloak
+- Kafka
+- Redis
+- Go
+- Nestjs
+- Postgres
+- Mongodb
+- Influxdb
