@@ -25,22 +25,17 @@ spec:
       hosts:
       - api.sisox.site
       paths:
-      - /bin*
-    plugins:
-    - name: proxy-rewrite
-      enable: true
-      config: 
-        regex_uri:
-        - "^/bin/*"
-        - /$1
+      - /*
+    plugins: 
     - name: openid-connect
       enable: true
       config:
         client_id: api
         client_secret: Xiz7wTtYTA46G4p7GZR9Bt6QtYft2OxR
         discovery: http://auth.sisox.site/realms/stock/.well-known/openid-configuration
-        bearer_only: true
+        bearer_only: false
         realm: stock
+        redirect_uri: http://api.sisox.site/callback
     backends:
     - serviceName: httpbin
       servicePort: 80
