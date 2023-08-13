@@ -13,7 +13,7 @@ spec:
     namespace: stock-trad
 ---
 # Define the route to access the backend
-apiVersion: apisix.apache.org/v2
+apiVersion: apisix.apache.org/v2beta3
 kind: ApisixRoute
 metadata:
   name: api-route
@@ -25,8 +25,14 @@ spec:
       hosts:
       - api.sisox.site
       paths:
-      - /*
+      - /bin*
     plugins:
+    - name: proxy-rewrite
+      enable: true
+      config: 
+        regex_uri:
+        - "^/bin/*"
+        - /$1
     - name: openid-connect
       enable: true
       config:
