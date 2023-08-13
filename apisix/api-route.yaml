@@ -11,7 +11,7 @@ spec:
   secret:
     name: sisox-tls-secret
     namespace: stock-trad
----    
+---
 # Define the route to access the backend
 apiVersion: apisix.apache.org/v2
 kind: ApisixRoute
@@ -26,6 +26,15 @@ spec:
       - api.sisox.site
       paths:
       - /*
+    plugins:
+    - name: openid-connect
+      enable: true
+      config:
+        client_id: api
+        client_secret: Xiz7wTtYTA46G4p7GZR9Bt6QtYft2OxR
+        discovery: http://auth.sisox.site/realms/stock/.well-known/openid-configuration
+        bearer_only: true
+        realm: stock
     backends:
     - serviceName: httpbin
       servicePort: 80
