@@ -1,0 +1,1 @@
+helm install -n stock-trad postgres oci://registry-1.docker.io/bitnamicharts/postgresql
